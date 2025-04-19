@@ -15,10 +15,10 @@ pipeline {
             steps {
                 sh '''
                     echo "Stopping spring application processer"
-                    sudo pkill -f target/webapp-0.0.1-SNAPSHOT.jar
+                    sudo pkill -f target/mvn_arch3-0.0.1-SNAPSHOT.jar
                     # Start the Spring application
                     echo "Starting the Spring application..."
-                    sudo java -jar target/webapp-0.0.1-SNAPSHOT.jar > /dev/null 2>&1 &
+                    sudo java -jar target/mvn_arch3-0.0.1-SNAPSHOT.jar > /dev/null 2>&1 &
                 '''
             }
         }
