@@ -5,24 +5,35 @@ pipeline {
         maven 'maven'
     }
 
+    environment {
+        TOMCAT_HOME = "/opt/tomcat"  // Adjust this path as per your Tomcat installation
+    }
+
     stages {
-        stage("build prepartion") {
+        stage("Build Preparation") {
             steps {
                 sh 'mvn clean package'
             }
         }
-        stage("deploy"){
+        stage("Deploy") {
             steps {
                 sh '''
-                    echo "Stopping spring application processer"
-                    sudo pkill -f target/mvn_arch3-0.0.1-SNAPSHOT.jar
-                    # Start the Spring application
-                    echo "Starting the Spring application..."
-                    sudo java -jar target/mvn_arch3-0.0.1-SNAPSHOT.jar > /dev/null 2>&1 &
+                    echo "Stopping Tomcat..."
+                    sudo systemctl stop tomcat
+
+                    echo "Removing old WAR..."
+                    sudo rm -rf $TOMCAT_HOME/webapps/mvn_arch3*
+
+                    echo "Deploying new WAR..."
+                    sudo cp target/mvn_arch3.war $TOMCAT_HOME/webapps/
+
+                    echo "Starting Tomcat..."
+                    sudo systemctl start tomcat
                 '''
             }
         }
     }
+
     post {
         success {
             echo "Deployed successfully"
