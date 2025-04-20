@@ -19,10 +19,9 @@ pipeline {
             steps {
                 sh '''
                     echo "Stopping Tomcat..."
-                    sudo systemctl stop tomcat
+                    
 
-                    echo "Removing old WAR..."
-                    sudo rm -rf $TOMCAT_HOME/webapps/mvn_arch3*
+                   
 
                     echo "Deploying new WAR..."
                     sudo cp target/mvn_arch3.war $TOMCAT_HOME/webapps/
