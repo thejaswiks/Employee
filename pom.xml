@@ -19,6 +19,19 @@
     <maven.compiler.source>8</maven.compiler.source>
     <maven.compiler.target>8</maven.compiler.target>
   </properties>
+         <repositories>
+  <repositories>
+    <repository>
+        <id>nexus-releases</id>
+        <name>maven-releases</name>
+        <url>http://13.232.2.99:8081/repository/maven-releases/</url>
+    </repository>
+    <repository>
+        <id>nexus-snapshots</id>
+        <name>maven-snapshots</name>
+        <url>http://13.232.2.99:8081/repository/maven-snapshots/</url>
+    </repository>
+</repositories>  
 
   <dependencies>
     <!-- Spring MVC -->
