@@ -3,12 +3,12 @@
         <server>
             <id>nexus-releases</id>
             <username>admin</username>
-            <password>admin</password>
+            <password>1dae5a5a-9311-49fe-9ef1-03ef40f3ef62</password>
         </server>
         <server>
             <id>nexus-snapshots</id>
             <username>admin</username>
-            <password>admin</password>
+            <password>1dae5a5a-9311-49fe-9ef1-03ef40f3ef62</password>
         </server>
     </servers>
 </settings>
