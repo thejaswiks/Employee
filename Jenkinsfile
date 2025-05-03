@@ -6,7 +6,7 @@ pipeline{
         stages{
             stage('source from git'){
                 steps{
-                    
+                    git 'https://github.com/thejaswiks/Employee.git'
                 }
             }
         
