@@ -1,44 +1,27 @@
-pipeline {
-    agent any
-
-    tools {
-        maven 'maven'
-    }
-
-    environment {
-        TOMCAT_HOME = "/opt/tomcat"  // Adjust this path as per your Tomcat installation
-    }
-
-    stages {
-        stage("Build Preparation") {
-            steps {
-                sh 'mvn clean package'
-            }
+pipeline{
+    agent any{
+        tools{
+            maven 'maven'
         }
-        stage("Deploy") {
-            steps {
-                sh '''
-                    echo "Stopping Tomcat..."
+        stages{
+            stage('source from git'){
+                steps{
                     
-
-                   
-
-                    echo "Deploying new WAR..."
-                    sudo cp target/mvn_arch3.war $TOMCAT_HOME/webapps/
-
-                    echo "Starting Tomcat..."
-                    sudo systemctl start tomcat
-                '''
+                }
             }
-        }
-    }
-
-    post {
-        success {
-            echo "Deployed successfully"
-        }
-        failure {
-            echo "Failed to Deploy"
+        
+            stage('clean')
+            {
+                steps{
+                    sh 'mvn clean'
+                }
+            }
+            stage('package')
+            {
+                steps{
+                    sh 'mvn package'
+                }
+            }
         }
     }
 }
